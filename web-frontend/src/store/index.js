@@ -39,7 +39,7 @@ const createStore = () => {
       showSidePanel: false,
 
       showMainToolBar: true,
-      showLocationButton: true,
+      showLocationButton: false,
       showTimeButtons: true,
       showObservingPanelTabsButtons: true,
       showSelectedInfoButtons: true,
@@ -70,7 +70,7 @@ const createStore = () => {
         accuracy: 5000
       },
 
-      useAutoLocation: true
+      useAutoLocation: false
     },
     mutations: {
       replaceStelWebEngine (state, newTree) {

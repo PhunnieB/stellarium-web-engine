@@ -8,9 +8,6 @@
 
 <template>
   <div style="position: absolute; display:flex; align-items: flex-end;">
-    <div v-if="$store.state.showLocationButton" class="tbtcontainer" style="max-width: 300px; display:flex; align-items: flex-end;">
-      <v-btn class="tmenubt" color="secondary" @click.stop.native="locationClicked()"><v-icon class="hidden-sm-and-up">mdi-map-marker</v-icon><span class="hidden-xs-only">{{ $store.state.currentLocation.short_name }}</span></v-btn>
-    </div>
     <v-spacer></v-spacer>
 
     <bottom-button :label="$t('Constellations')"
@@ -84,6 +81,13 @@
                 :toggled="$store.state.fullscreen"
                 @clicked="(b) => { setFullscreen(b) }">
     </bottom-button>
+    <bottom-button :label="$t('BU SSH into me')"
+                :img="fullscreenBtnImage"
+                img_alt="Fullscreen Button"
+                class="mr-auto hidden-xs-only"
+                :toggled="$store.state.epic"
+                @clicked="(b) => { setLocation(b) }">
+    </bottom-button>
 
     <v-spacer></v-spacer>
 
@@ -152,14 +156,15 @@ export default {
       m.local()
       return m
     },
-    locationClicked: function () {
-      this.$store.commit('toggleBool', 'showLocationDialog')
-    },
     setFullscreen: function (b) {
       this.$fullscreen.toggle(document.body, {
         wrap: false,
         callback: this.onFullscreenChange
       })
+    },
+    setLocation: function () {
+      this.$stel.core.observer.longitude = 33.7490 * this.$stel.D2R
+      this.$stel.core.observer.latitude = -84.3880 * this.$stel.D2R
     },
     setNightMode: function (b) {
       this.$store.commit('toggleBool', 'nightmode')
