@@ -70,6 +70,9 @@
       <v-btn v-if="!showPointToButton" fab small color="transparent" @mousedown="zoomInButtonClicked()">
         <img :class="{bt_disabled: !zoomInButtonEnabled}" src="@/assets/images/svg/ui/add_circle_outline.svg" height="40px" style="min-height: 40px"></img>
       </v-btn>
+      <v-btn color="transparent" v-on:click.native="getSelection()">
+        Send
+      </v-btn>
     </div>
     <v-snackbar bottom left :timeout="2000" v-model="copied" color="secondary" >
       Link copied
@@ -329,6 +332,19 @@ export default {
         this.$stel.pointAndLock(this.$stel.core.selection, 0.5)
       }
     },
+    getSelection: function () {
+      if (this.$stel.core.selection) {
+        const obj = this.$stel.core.selection
+        const posCIRS = this.$stel.convertFrame(this.$stel.core.observer, 'ICRF', 'JNOW', obj.getInfo('radec'))
+        const radecCIRS = this.$stel.c2s(posCIRS)
+        const raCIRS = this.$stel.anp(radecCIRS[0])
+        const decCIRS = this.$stel.anpm(radecCIRS[1])
+        console.log(raCIRS)
+        console.log(decCIRS)
+        console.log(this.otherNames)
+      }
+    },
+
     zoomInButtonClicked: function () {
       const currentFov = this.$store.state.stel.fov * 180 / Math.PI
       this.$stel.zoomTo(currentFov * 0.3 * Math.PI / 180, 0.4)

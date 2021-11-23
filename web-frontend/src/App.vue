@@ -7,7 +7,6 @@
 // repository.
 
 <template>
-
 <v-app>
   <v-navigation-drawer v-model="nav" app stateless width="300">
     <v-layout column fill-height>
