@@ -343,8 +343,6 @@ export default {
         const az = this.$stel.anp(azalt[0])
         const alt = this.$stel.anpm(azalt[1])
         window.top.postMessage({ RA: raCIRS, DEC: decCIRS, Name: this.otherNames, az: az, alt: alt }, '*')
-        console.log(this.$stel.core.observer.longitude)
-        console.log(this.$stel.core.observer.latitude)
       }
     },
 
