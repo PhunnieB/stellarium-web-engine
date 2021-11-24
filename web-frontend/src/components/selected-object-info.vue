@@ -70,7 +70,7 @@
       <v-btn v-if="!showPointToButton" fab small color="transparent" @mousedown="zoomInButtonClicked()">
         <img :class="{bt_disabled: !zoomInButtonEnabled}" src="@/assets/images/svg/ui/add_circle_outline.svg" height="40px" style="min-height: 40px"></img>
       </v-btn>
-      <v-btn color="transparent" v-on:click.native="getSelection()">
+      <v-btn v-on:click.native="getSelection()">
         Send
       </v-btn>
     </div>
@@ -339,9 +339,12 @@ export default {
         const radecCIRS = this.$stel.c2s(posCIRS)
         const raCIRS = this.$stel.anp(radecCIRS[0])
         const decCIRS = this.$stel.anpm(radecCIRS[1])
-        console.log(raCIRS)
-        console.log(decCIRS)
-        console.log(this.otherNames)
+        const azalt = this.$stel.c2s(this.$stel.convertFrame(this.$stel.core.observer, 'ICRF', 'OBSERVED', obj.getInfo('radec')))
+        const az = this.$stel.anp(azalt[0])
+        const alt = this.$stel.anpm(azalt[1])
+        window.top.postMessage({ RA: raCIRS, DEC: decCIRS, Name: this.otherNames, az: az, alt: alt }, '*')
+        console.log(this.$stel.core.observer.longitude)
+        console.log(this.$stel.core.observer.latitude)
       }
     },
 

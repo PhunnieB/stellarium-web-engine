@@ -81,13 +81,13 @@
                 :toggled="$store.state.fullscreen"
                 @clicked="(b) => { setFullscreen(b) }">
     </bottom-button>
-    <bottom-button :label="$t('BU SSH into me')"
+    <!--<bottom-button :label="$t('BU SSH into me')"
                 :img="fullscreenBtnImage"
                 img_alt="Fullscreen Button"
                 class="mr-auto hidden-xs-only"
                 :toggled="$store.state.epic"
                 @clicked="(b) => { setLocation(b) }">
-    </bottom-button>
+    </bottom-button>-->
 
     <v-spacer></v-spacer>
 
@@ -162,9 +162,10 @@ export default {
         callback: this.onFullscreenChange
       })
     },
-    setLocation: function () {
-      this.$stel.core.observer.longitude = 33.7490 * this.$stel.D2R
-      this.$stel.core.observer.latitude = -84.3880 * this.$stel.D2R
+    setLocation: function (lat, lon) {
+      this.$stel.core.observer.longitude = lat * this.$stel.D2R
+      this.$stel.core.observer.latitude = lon * this.$stel.D2R
+      console.log("Location set.")
     },
     setNightMode: function (b) {
       this.$store.commit('toggleBool', 'nightmode')
@@ -176,7 +177,14 @@ export default {
     onFullscreenChange: function (b) {
       if (this.$store.state.fullscreen === b) return
       this.$store.commit('toggleBool', 'fullscreen')
+    },
+    receiveMsg: function (event) {
+      console.log('msg', event.data)
+      this.setLocation(event.data.lat, event.data.lon)
     }
+  },
+  mounted () {
+    window.addEventListener('message', this.receiveMsg, false)
   }
 }
 </script>
