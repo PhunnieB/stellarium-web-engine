@@ -165,7 +165,7 @@ export default {
     setLocation: function (lat, lon) {
       this.$stel.core.observer.longitude = lat * this.$stel.D2R
       this.$stel.core.observer.latitude = lon * this.$stel.D2R
-      console.log("Location set.")
+      console.log('Location set.')
     },
     setNightMode: function (b) {
       this.$store.commit('toggleBool', 'nightmode')
