@@ -74,14 +74,14 @@
                 :toggled="$store.state.nightmode"
                 @clicked="(b) => { setNightMode(b) }">
     </bottom-button>
-    <bottom-button :label="$t('Fullscreen')"
+    <!--<bottom-button :label="$t('Fullscreen')"
                 :img="fullscreenBtnImage"
                 img_alt="Fullscreen Button"
                 class="mr-auto hidden-xs-only"
                 :toggled="$store.state.fullscreen"
                 @clicked="(b) => { setFullscreen(b) }">
     </bottom-button>
-    <!--<bottom-button :label="$t('BU SSH into me')"
+    <bottom-button :label="$t('BU SSH into me')"
                 :img="fullscreenBtnImage"
                 img_alt="Fullscreen Button"
                 class="mr-auto hidden-xs-only"
