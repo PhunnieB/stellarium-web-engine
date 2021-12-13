@@ -27,6 +27,7 @@ export default {
       if (!ss) {
         return
       }
+      console.log(ss)
       let obj = swh.skySource2SweObj(ss)
       if (!obj) {
         obj = this.$stel.createObj(ss.model, ss)

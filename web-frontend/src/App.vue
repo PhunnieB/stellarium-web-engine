@@ -244,7 +244,6 @@ export default {
               plugin.onEngineReady(that)
             }
           }
-
           if (!that.dataSourceInitDone) {
             // Set all default data sources
             const core = that.$stel.core

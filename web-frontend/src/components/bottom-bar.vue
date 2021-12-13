@@ -185,6 +185,7 @@ export default {
   },
   mounted () {
     window.addEventListener('message', this.receiveMsg, false)
+    window.top.postMessage({ status: 'ready' }, '*')
   }
 }
 </script>

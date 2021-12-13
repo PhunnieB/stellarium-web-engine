@@ -335,6 +335,7 @@ export default {
     getSelection: function () {
       if (this.$stel.core.selection) {
         const obj = this.$stel.core.selection
+        console.log(obj)
         const posCIRS = this.$stel.convertFrame(this.$stel.core.observer, 'ICRF', 'JNOW', obj.getInfo('radec'))
         const radecCIRS = this.$stel.c2s(posCIRS)
         const raCIRS = this.$stel.anp(radecCIRS[0])
