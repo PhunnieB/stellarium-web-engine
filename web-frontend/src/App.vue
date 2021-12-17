@@ -247,8 +247,10 @@ export default {
           if (!that.dataSourceInitDone) {
             // Set all default data sources
             const core = that.$stel.core
-            core.stars.addDataSource({ url: process.env.BASE_URL + 'skydata/stars' })
-
+            core.stars.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/swe-data-packs/extended/2020-03-11/extended_2020-03-11_26aa5ab8/stars' })
+            core.stars.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/swe-data-packs/minimal/2020-09-01/minimal_2020-09-01_186e7ee2/stars' })
+            core.stars.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/swe-data-packs/base/2020-09-01/base_2020-09-01_1aa210df/stars' })
+            // core.stars.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/surveys/gaia/v1' })
             // Allow to specify a custom path for sky culture data
             if (that.$route.query.sc) {
               const key = that.$route.query.sc.substring(that.$route.query.sc.lastIndexOf('/') + 1)
@@ -257,10 +259,12 @@ export default {
             } else {
               core.skycultures.addDataSource({ url: process.env.BASE_URL + 'skydata/skycultures/western', key: 'western' })
             }
-
-            core.dsos.addDataSource({ url: process.env.BASE_URL + 'skydata/dso' })
+            core.dsos.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/swe-data-packs/base/2020-09-01/base_2020-09-01_1aa210df/dso' })
+            core.dsos.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/swe-data-packs/extended/2020-03-11/extended_2020-03-11_26aa5ab8/dso' })
+            core.dss.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/surveys/dss/v1' })
+            core.milkyway.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/surveys/dss/v1' })
             core.landscapes.addDataSource({ url: process.env.BASE_URL + 'skydata/landscapes/guereins', key: 'guereins' })
-            core.milkyway.addDataSource({ url: process.env.BASE_URL + 'skydata/surveys/milkyway' })
+            core.milkyway.addDataSource({ url: 'http://steldata.greg.192.168.1.126.nip.io:8086/surveys/milkyway/v1' })
             core.minor_planets.addDataSource({ url: process.env.BASE_URL + 'skydata/mpcorb.dat', key: 'mpc_asteroids' })
             core.planets.addDataSource({ url: process.env.BASE_URL + 'skydata/surveys/sso/moon', key: 'moon' })
             core.planets.addDataSource({ url: process.env.BASE_URL + 'skydata/surveys/sso/sun', key: 'sun' })
